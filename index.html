@@ -160,6 +160,132 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Pandas记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/02/Pandas记录/">Pandas记录</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/02/Pandas记录/" class="archive-article-date">
+  	<time datetime="2019-08-02T12:34:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><h3 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h3><p>一维数据结构，包含行和索引两个部分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series([<span class="number">14</span>, <span class="number">15</span>, <span class="number">17</span>], index=[<span class="string">u'A'</span>, <span class="string">u'B'</span>, <span class="string">u'C'</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3><p>二维数据结构，包含带索引的多列数据，各列的数据类型可能不同</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;<span class="string">'city'</span>: [<span class="string">'Beijing'</span>, <span class="string">'Shanghai'</span>, <span class="string">'Guangzhou'</span>, <span class="string">'Shenzhen'</span>, <span class="string">'Hangzhou'</span>, <span class="string">'Chongqing'</span>],</span><br><span class="line">       <span class="string">'year'</span>: [<span class="number">2016</span>,<span class="number">2017</span>,<span class="number">2016</span>,<span class="number">2017</span>,<span class="number">2016</span>, <span class="number">2016</span>],</span><br><span class="line">       <span class="string">'population'</span>: [<span class="number">2100</span>, <span class="number">2300</span>, <span class="number">1000</span>, <span class="number">700</span>, <span class="number">500</span>, <span class="number">500</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>从文件中读取数据(DataFrame)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pd.read_csv() <span class="comment">#从文件中读取,参数: file,文件路径; seq,分隔符; index_col,用作行索引的一列或者多列; usecols,选择列; enconding,字符编码类型,通常为'utf-8'.</span></span><br><span class="line">pd.read_table() <span class="comment">#从制表符分隔文件读取,如TSV</span></span><br><span class="line">pd.read_excel() <span class="comment">#从Excel文件读取</span></span><br><span class="line">pd.read_sql() <span class="comment">#从SQL表或数据库读取</span></span><br><span class="line">pd.read_json() <span class="comment">#从JSON格式的URL或文件读取</span></span><br><span class="line">pd.read_clipboard() <span class="comment">#从剪切板读取</span></span><br></pre></td></tr></table></figure>
+
+<p>将DataFrame写入文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.to_csv() <span class="comment">#写入CSV文件, 参数: file，文件路径; seq, 分隔符; columns,写入文件的列; header, 是否写入表头; index, 是否写入索引.</span></span><br><span class="line">df.to_excel() <span class="comment">#写入Excel文件.</span></span><br><span class="line">df.to_sql() <span class="comment">#写入SQL表或数据库</span></span><br><span class="line">df.to_json() <span class="comment">#写入JSON格式的文件</span></span><br><span class="line">df.to_clipboard() <span class="comment">#写入剪切板</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据索引"><a href="#数据索引" class="headerlink" title="数据索引"></a>数据索引</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="number">5</span>:<span class="number">10</span>] <span class="comment">#通过切片方式选取多行</span></span><br><span class="line">df[loc_label] <span class="keyword">or</span> df.col_label <span class="comment">#选取列</span></span><br><span class="line">df.loc[row_label, col_label] <span class="comment">#通过标签选取行/列</span></span><br><span class="line">df.iloc[row_loc, col_loc] <span class="comment">#通过位置(自然数)选取行/列</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据探索"><a href="#数据探索" class="headerlink" title="数据探索"></a>数据探索</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s.unique() <span class="comment">#唯一值</span></span><br><span class="line">s.value_counts() <span class="comment">#唯一值及其计数</span></span><br><span class="line">df.head(n) <span class="comment">#前n行数据</span></span><br><span class="line">df.tail(n) <span class="comment">#后n行数据</span></span><br><span class="line">df.sample(n) <span class="comment">#随机采样的n行数据</span></span><br><span class="line">df.shape <span class="comment">#行数和</span></span><br><span class="line">df.info() <span class="comment">#样本数、数据类型和内存占用等信息</span></span><br><span class="line">df.describe() <span class="comment">#描述性统计信息汇总</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="筛选与过滤"><a href="#筛选与过滤" class="headerlink" title="筛选与过滤"></a>筛选与过滤</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">u'职业'</span>].isin([<span class="string">u'研究员'</span>]) <span class="comment">#判断"职业”是否包含“研究员”.</span></span><br><span class="line">df[df[<span class="string">u'年龄'</span>]&gt;<span class="number">25</span>, [<span class="string">u'职业'</span>]] <span class="comment">#逻辑表达式筛选行，并筛选列</span></span><br><span class="line">df.filter(<span class="string">'regex'</span>) <span class="comment">#筛选满足表达式的列</span></span><br><span class="line">df.drop([<span class="string">u'李某'</span>], axis=<span class="number">0</span>) <span class="comment">#删除“李某”行</span></span><br><span class="line">df.drop([<span class="string">u'年龄'</span>]， axis=<span class="number">1</span>) <span class="comment">#删除“年龄”列</span></span><br><span class="line">df.drop_duplicates() <span class="comment">#输出重复样本</span></span><br><span class="line">df.select_dtypes() <span class="comment">#根据数据类型包含(include)或去除(exclude)列</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="调整索引和修改标签"><a href="#调整索引和修改标签" class="headerlink" title="调整索引和修改标签"></a>调整索引和修改标签</h2><p>inplace=True, 更改原始Pandas对象<br>axis=0,纵向轴; axis=1, 横向轴,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df.astype(&#123;<span class="string">u'年龄'</span>:<span class="string">'int8'</span>&#125;) <span class="comment">#数据类型转换</span></span><br><span class="line">df.index = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>] <span class="comment">#修改行索引</span></span><br><span class="line">df.columns = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>] <span class="comment">#修改列索引</span></span><br><span class="line">df.set_index() <span class="comment">#设置某一列为索引</span></span><br><span class="line">df.reset_index() <span class="comment">#重置索引为自然数索引</span></span><br><span class="line">df.reindex(index, columns=[<span class="string">'A'</span>, <span class="string">'B'</span>]) <span class="comment">#根据index和columns进行重排</span></span><br><span class="line">df.rename(index, columns=&#123;<span class="string">'A'</span>:<span class="string">'B'</span>&#125;) <span class="comment">#对行索引或列标签进行修改</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="排名和排序"><a href="#排名和排序" class="headerlink" title="排名和排序"></a>排名和排序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df.sort_index(axis=<span class="number">0</span>) <span class="comment">#按照行索引进行排序</span></span><br><span class="line">df.sort_values(<span class="string">'A'</span>, axis=<span class="number">0</span>) <span class="comment">#根据“A”列值进行升序排列</span></span><br><span class="line">df.sort_values(<span class="string">'A'</span>, ascending=<span class="literal">False</span>) <span class="comment">#根据“A”列值进行降序排列</span></span><br><span class="line">df.rank(axis=<span class="number">0</span>) <span class="comment">#返回元素在所属列的排名</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="层次化索引"><a href="#层次化索引" class="headerlink" title="层次化索引"></a>层次化索引</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.index = [[<span class="string">u'法务部'</span>, <span class="string">u'研发部'</span>, <span class="string">u'研发部'</span>], [<span class="string">u'张某'</span>, <span class="string">u'李某'</span>, <span class="string">u'段某'</span>]] <span class="comment">#创建层次索引</span></span><br><span class="line">df.index.names = [<span class="string">u'部门'</span>, <span class="string">u'姓名'</span>] <span class="comment">#创建行索引名称</span></span><br><span class="line">df.swaplevel(<span class="number">0</span>, <span class="number">1</span>) <span class="comment">#互换行索引级别</span></span><br><span class="line">df.reorder_levels([<span class="number">1</span>, <span class="number">0</span>]) <span class="comment">#重排行索引级别</span></span><br><span class="line">df.xs(<span class="string">u'年龄'</span>, level=<span class="number">1</span>, axis=<span class="number">1</span>) <span class="comment">#根据某一层级进行交叉选择</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="统计函数"><a href="#统计函数" class="headerlink" title="统计函数"></a>统计函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">df.sum() <span class="comment">#求和</span></span><br><span class="line">df.mean() <span class="comment">#均值</span></span><br><span class="line">df.max() <span class="comment">#最大值</span></span><br><span class="line">df.min() <span class="comment">#最小值</span></span><br><span class="line">df.median() <span class="comment">#中位数</span></span><br><span class="line">df.quantile([<span class="number">0.25</span>, <span class="number">0.75</span>]) <span class="comment">#分位数</span></span><br><span class="line">df.std() <span class="comment">#标准差</span></span><br><span class="line">df.var() <span class="comment">#方差</span></span><br><span class="line">df.cumsum() <span class="comment">#累和</span></span><br><span class="line">df.mode() <span class="comment">#众数</span></span><br><span class="line">df.corr() <span class="comment">#相关系数矩阵</span></span><br><span class="line">df.corrwith() <span class="comment">#不同Pandas对象之间的相关性</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="确实值检测与处理"><a href="#确实值检测与处理" class="headerlink" title="确实值检测与处理"></a>确实值检测与处理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df.isnull() <span class="comment">#判断每个元素是否为缺失值</span></span><br><span class="line">df.notnull() <span class="comment">#判断每个元素是否为非缺失值</span></span><br><span class="line">df.fillna(&#123;<span class="string">'A'</span>:<span class="number">1</span>, <span class="string">'B'</span>:<span class="number">22</span>&#125;) <span class="comment">#多列缺失值填补</span></span><br><span class="line">df.dropna() <span class="comment">#删除缺失值所在行、列  参数: axis, 操作轴, 默认为横向, 即丢弃行; how, 丢弃方式; subset, 考虑部分行和列; thresh, 非缺失值数量下限</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据合并"><a href="#数据合并" class="headerlink" title="数据合并"></a>数据合并</h2><h3 id="数据融合-merge"><a href="#数据融合-merge" class="headerlink" title="数据融合(merge)"></a>数据融合(merge)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left, right) <span class="comment">#类数据库的数据融合操作</span></span><br><span class="line"><span class="comment">#参数:how,融合方式，包括左连接，右连接，内连接(默认)和外连接; on, 连接键; left_on, 左键; right_on, 右键; </span></span><br><span class="line"><span class="comment">#left_index, 是否将left行索引作为左键; right_index, 是否将right行作为右键</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据融合-join"><a href="#数据融合-join" class="headerlink" title="数据融合(join)"></a>数据融合(join)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right) <span class="comment">#在索引上的数据融合操作</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据融合-combine-first"><a href="#数据融合-combine-first" class="headerlink" title="数据融合(combine_first)"></a>数据融合(combine_first)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.combine_first(right) <span class="comment">#在数据融合的同时(行索引和列索引取并集)，使用right中的值填补left中相应位置的缺失值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="轴向连接"><a href="#轴向连接" class="headerlink" title="轴向连接"></a>轴向连接</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([df1, df2]) <span class="comment">#轴向连接多个DataFrame</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="轴向旋转和数据转换"><a href="#轴向旋转和数据转换" class="headerlink" title="轴向旋转和数据转换"></a>轴向旋转和数据转换</h2><h3 id="轴向旋转"><a href="#轴向旋转" class="headerlink" title="轴向旋转"></a>轴向旋转</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.stack() <span class="comment">#将数据的列“旋转”为行</span></span><br><span class="line">df.unstack() <span class="comment">#将数据的行"旋转"为列</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s.map() <span class="comment">#利用函数或映射进行数据转换</span></span><br><span class="line">df.applymap() <span class="comment">#利用函数或映射进行数据转换</span></span><br><span class="line">df.replace() <span class="comment">#替换元素值</span></span><br><span class="line">df.columns.map(str.upper) <span class="comment">#将列名转换为大写</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据聚合与分组运算"><a href="#数据聚合与分组运算" class="headerlink" title="数据聚合与分组运算"></a>数据聚合与分组运算</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(<span class="string">'A'</span>) <span class="comment">#根据"A"列的值进行分组，并返回一个GroupBy对象</span></span><br><span class="line">df.groupby([<span class="string">'A'</span>,<span class="string">'B'</span>]) <span class="comment">#根据"A"列和"B"列的值组合进行分组，并返回一个GroupBy对象</span></span><br><span class="line">df.groupby(<span class="string">'A'</span>)[<span class="string">'B'</span>].mean() <span class="comment">#根据"A"列的值进行分组，并计算每一组中"B"的均值</span></span><br><span class="line">df.groupby(<span class="string">'A'</span>).agg(np.mean) <span class="comment">#根据"A"列的值进行分组，并计算每一组中各列的均值</span></span><br><span class="line">df.apply(np.mean) <span class="comment">#对DataFrame的每一列求均值</span></span><br><span class="line">df.apply(np.mean, axis=<span class="number">1</span>) <span class="comment">#对DataFrame的每一行求均值</span></span><br><span class="line">df.pivot_table(index=<span class="string">'A'</span>, values=[<span class="string">'B'</span>, <span class="string">'C'</span>], aggfunc=mean) <span class="comment">#创建数据透视表，根据"A"列的值进行分组，并计算每一组中"B"和"C"的均值</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="离散化和哑变量编码"><a href="#离散化和哑变量编码" class="headerlink" title="离散化和哑变量编码"></a>离散化和哑变量编码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pd.cut(s, bin=[<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>], labels=[<span class="string">'A'</span>, <span class="string">'B'</span>]) <span class="comment">#离散化和面元划分</span></span><br><span class="line">pd.qcut(s, <span class="number">2</span>, labels=[<span class="string">'A'</span>, <span class="string">'B'</span>]) <span class="comment">#等频离散化</span></span><br><span class="line">pd.get_dummies(df, columns=[<span class="string">'A'</span>],drop_first=<span class="literal">True</span>) <span class="comment">#对"A"列进行哑变量编码，并去掉第一个编码特征</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="串联方法"><a href="#串联方法" class="headerlink" title="串联方法"></a>串联方法</h2><p>通过调用多个Pandas方法将多个处理过程串联起来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left, right, how=<span class="string">'outer'</span>, indicator=<span class="literal">True</span>).query(<span class="string">'_merge == "left_only"'</span>).drop([<span class="string">'_merge'</span>], axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#保留在left中但不在right中的行</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="文本数据规整"><a href="#文本数据规整" class="headerlink" title="文本数据规整"></a>文本数据规整</h2><p>s.str.method<br>矢量化字符串方法，可以跳过缺失值，遇缺失值将不报错.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s.str.lower() <span class="comment">#将所有元素转换为全部小写.</span></span><br><span class="line">s.str.upper() <span class="comment">#将所有元素转换为全部大写.</span></span><br><span class="line">s.str.replace() <span class="comment">#替换值</span></span><br><span class="line">s.str.split(<span class="string">" "</span>).str[<span class="number">0</span>] <span class="comment">#空格分割，并取列表中的第一个元素.</span></span><br><span class="line">s.str.split(<span class="string">" "</span>).str.get(<span class="number">0</span>) <span class="comment">#空格分割，并取列表的第一个元素</span></span><br><span class="line">s.str.split(<span class="string">" "</span>, expeand=<span class="literal">True</span>) <span class="comment">#空格分割，并扩展为多列</span></span><br><span class="line">s.str.contains(<span class="string">r'\d'</span>) <span class="comment">#利用正则表达式判断是否元素包含数字</span></span><br><span class="line">s.str.extract(<span class="string">r'(\d)'</span>, expand=<span class="literal">False</span>) <span class="comment">#利用正则表达式提取每个元素中的数字</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.plot(kind=<span class="string">'hist'</span>) <span class="comment">#设置kind参数绘制直方图.</span></span><br><span class="line">df.plot.line() <span class="comment">#调用对象借口绘制折线图</span></span><br><span class="line">df.plot.scatter(<span class="string">'x'</span>, <span class="string">'y'</span>) <span class="comment">#绘制x-y散点图</span></span><br><span class="line"><span class="comment">#包括图形：面积图df.plot.area; 纵向柱状图df.plot.bar; 横向柱状图df.plot.barh;盒图df.plot.box;核密度图df.plot.kde;</span></span><br><span class="line"><span class="comment">#蜂巢图df.plot.hexbin;饼图df.plot.pie</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">python学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/02/Pandas记录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-first-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -388,6 +514,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">python学习</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
