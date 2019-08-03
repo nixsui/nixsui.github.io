@@ -150,6 +150,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-matlotlib参考" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/03/matlotlib参考/">matlotlib参考</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/03/matlotlib参考/" class="archive-article-date">
+  	<time datetime="2019-08-03T14:30:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义数据部分</span></span><br><span class="line">x = np.arange(<span class="number">0.</span>, <span class="number">10</span>, <span class="number">0.2</span>)</span><br><span class="line">y1 = np.cos(x)</span><br><span class="line">y2 = np.sin(x)</span><br><span class="line">y3 = np.sqrt(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制 3 条函数曲线</span></span><br><span class="line">plt.plot(x, y1, color=<span class="string">'blue'</span>, linewidth=<span class="number">1.5</span>, linestyle=<span class="string">'-'</span>, marker=<span class="string">'.'</span>, label=<span class="string">r'$y = cos&#123;x&#125;$'</span>)</span><br><span class="line">plt.plot(x, y2, color=<span class="string">'green'</span>, linewidth=<span class="number">1.5</span>, linestyle=<span class="string">'-'</span>, marker=<span class="string">'*'</span>, label=<span class="string">r'$y = sin&#123;x&#125;$'</span>)</span><br><span class="line">plt.plot(x, y3, color=<span class="string">'m'</span>, linewidth=<span class="number">1.5</span>, linestyle=<span class="string">'-'</span>, marker=<span class="string">'x'</span>, label=<span class="string">r'$y = \sqrt&#123;x&#125;$'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 坐标轴上移</span></span><br><span class="line">ax = plt.subplot(<span class="number">111</span>)</span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)     <span class="comment"># 去掉右边的边框线</span></span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>)       <span class="comment"># 去掉上边的边框线</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动下边边框线，相当于移动 X 轴</span></span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'bottom'</span>)    </span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动左边边框线，相当于移动 y 轴</span></span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'left'</span>)</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 x, y 轴的取值范围</span></span><br><span class="line">plt.xlim(x.min()*<span class="number">1.1</span>, x.max()*<span class="number">1.1</span>)</span><br><span class="line">plt.ylim(<span class="number">-1.5</span>, <span class="number">4.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 x, y 轴的刻度值</span></span><br><span class="line">plt.xticks([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>], [<span class="string">r'2'</span>, <span class="string">r'4'</span>, <span class="string">r'6'</span>, <span class="string">r'8'</span>, <span class="string">r'10'</span>])</span><br><span class="line">plt.yticks([<span class="number">-1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>], </span><br><span class="line">    [<span class="string">r'-1.0'</span>, <span class="string">r'0.0'</span>, <span class="string">r'1.0'</span>, <span class="string">r'2.0'</span>, <span class="string">r'3.0'</span>, <span class="string">r'4.0'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加文字</span></span><br><span class="line">plt.text(<span class="number">8</span>, <span class="number">1.5</span>, <span class="string">r'$x \in [0.0, \ 10.0]$'</span>, color=<span class="string">'k'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">plt.text(<span class="number">8</span>, <span class="number">1.8</span>, <span class="string">r'$y \in [-1.0, \ 4.0]$'</span>, color=<span class="string">'k'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 特殊点添加注解</span></span><br><span class="line">plt.scatter([<span class="number">8</span>,],[np.sqrt(<span class="number">8</span>),], <span class="number">50</span>, color =<span class="string">'m'</span>)  <span class="comment"># 使用散点图放大当前点</span></span><br><span class="line">plt.annotate(<span class="string">r'$2\sqrt&#123;2&#125;$'</span>, xy=(<span class="number">8</span>, np.sqrt(<span class="number">8</span>)), xytext=(<span class="number">8.5</span>, <span class="number">2.2</span>), fontsize=<span class="number">16</span>, color=<span class="string">'#090909'</span>, arrowprops=dict(arrowstyle=<span class="string">'-&gt;'</span>, connectionstyle=<span class="string">'arc3, rad=0.1'</span>, color=<span class="string">'#090909'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置标题、x轴、y轴</span></span><br><span class="line">plt.title(<span class="string">r'$the \ function \ figure \ of \ cos(), \ sin() \ and \ sqrt()$'</span>, fontsize=<span class="number">19</span>)</span><br><span class="line">plt.xlabel(<span class="string">r'$the \ input \ value \ of \ x$'</span>, fontsize=<span class="number">18</span>, labelpad=<span class="number">88.8</span>)</span><br><span class="line">plt.ylabel(<span class="string">r'$y = f(x)$'</span>, fontsize=<span class="number">18</span>, labelpad=<span class="number">12.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置图例及位置</span></span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>)    </span><br><span class="line"><span class="comment"># plt.legend(['cos(x)', 'sin(x)', 'sqrt(x)'], loc='up right')</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示网格线</span></span><br><span class="line">plt.grid(<span class="literal">True</span>)    </span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示绘图</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">python学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/03/matlotlib参考/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Pandas记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
