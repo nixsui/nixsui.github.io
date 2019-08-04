@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://nixsui.github.io">
-  <title>matlotlib参考 | Gray</title>
+  <title>seaborn | Gray</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="导入包1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#coding:utf-8import warningswarnings.filterwarnings(&apos;ignore&apos;)import numpy as npimp">
-<meta name="keywords" content="python学习">
+  <meta name="description" content="seaborn包基于matplotlib设计，很多matplotlib中的函数在seaborn中同样适用，例如plt.title()等.seaborn还提供了对pandas、numpy等数据结构的完美支持并可以绘制出独具特色并含有统计信息的高品质图形.其核心功能包括优美的绘图模板、高级统计绘图能力以及绘制时间序列数据等. 导入包1import seaborn as sns  可视化单一特征1234">
+<meta name="keywords" content="python，c++, ml, dl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="matlotlib参考">
-<meta property="og:url" content="https://nixsui.github.io/2019/08/03/matlotlib参考/index.html">
+<meta property="og:title" content="seaborn">
+<meta property="og:url" content="https://nixsui.github.io/2019/08/03/seaborn/index.html">
 <meta property="og:site_name" content="Gray">
-<meta property="og:description" content="导入包1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#coding:utf-8import warningswarnings.filterwarnings(&apos;ignore&apos;)import numpy as npimp">
+<meta property="og:description" content="seaborn包基于matplotlib设计，很多matplotlib中的函数在seaborn中同样适用，例如plt.title()等.seaborn还提供了对pandas、numpy等数据结构的完美支持并可以绘制出独具特色并含有统计信息的高品质图形.其核心功能包括优美的绘图模板、高级统计绘图能力以及绘制时间序列数据等. 导入包1import seaborn as sns  可视化单一特征1234">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-03T14:31:28.810Z">
+<meta property="og:updated_time" content="2019-08-04T06:35:02.991Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="matlotlib参考">
-<meta name="twitter:description" content="导入包1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#coding:utf-8import warningswarnings.filterwarnings(&apos;ignore&apos;)import numpy as npimp">
+<meta name="twitter:title" content="seaborn">
+<meta name="twitter:description" content="seaborn包基于matplotlib设计，很多matplotlib中的函数在seaborn中同样适用，例如plt.title()等.seaborn还提供了对pandas、numpy等数据结构的完美支持并可以绘制出独具特色并含有统计信息的高品质图形.其核心功能包括优美的绘图模板、高级统计绘图能力以及绘制时间序列数据等. 导入包1import seaborn as sns  可视化单一特征1234">
   
     <link rel="alternative" href="/atom.xml" title="Gray" type="application/atom+xml">
   
@@ -149,27 +149,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-matlotlib参考" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-seaborn" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      matlotlib参考
+      seaborn
     </h1>
   
 
         
-        <a href="/2019/08/03/matlotlib参考/" class="archive-article-date">
-  	<time datetime="2019-08-03T14:30:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
+        <a href="/2019/08/03/seaborn/" class="archive-article-date">
+  	<time datetime="2019-08-03T15:01:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义数据部分</span></span><br><span class="line">x = np.arange(<span class="number">0.</span>, <span class="number">10</span>, <span class="number">0.2</span>)</span><br><span class="line">y1 = np.cos(x)</span><br><span class="line">y2 = np.sin(x)</span><br><span class="line">y3 = np.sqrt(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制 3 条函数曲线</span></span><br><span class="line">plt.plot(x, y1, color=<span class="string">'blue'</span>, linewidth=<span class="number">1.5</span>, linestyle=<span class="string">'-'</span>, marker=<span class="string">'.'</span>, label=<span class="string">r'$y = cos&#123;x&#125;$'</span>)</span><br><span class="line">plt.plot(x, y2, color=<span class="string">'green'</span>, linewidth=<span class="number">1.5</span>, linestyle=<span class="string">'-'</span>, marker=<span class="string">'*'</span>, label=<span class="string">r'$y = sin&#123;x&#125;$'</span>)</span><br><span class="line">plt.plot(x, y3, color=<span class="string">'m'</span>, linewidth=<span class="number">1.5</span>, linestyle=<span class="string">'-'</span>, marker=<span class="string">'x'</span>, label=<span class="string">r'$y = \sqrt&#123;x&#125;$'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 坐标轴上移</span></span><br><span class="line">ax = plt.subplot(<span class="number">111</span>)</span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)     <span class="comment"># 去掉右边的边框线</span></span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>)       <span class="comment"># 去掉上边的边框线</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动下边边框线，相当于移动 X 轴</span></span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'bottom'</span>)    </span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动左边边框线，相当于移动 y 轴</span></span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'left'</span>)</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 x, y 轴的取值范围</span></span><br><span class="line">plt.xlim(x.min()*<span class="number">1.1</span>, x.max()*<span class="number">1.1</span>)</span><br><span class="line">plt.ylim(<span class="number">-1.5</span>, <span class="number">4.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 x, y 轴的刻度值</span></span><br><span class="line">plt.xticks([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>], [<span class="string">r'2'</span>, <span class="string">r'4'</span>, <span class="string">r'6'</span>, <span class="string">r'8'</span>, <span class="string">r'10'</span>])</span><br><span class="line">plt.yticks([<span class="number">-1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>], </span><br><span class="line">    [<span class="string">r'-1.0'</span>, <span class="string">r'0.0'</span>, <span class="string">r'1.0'</span>, <span class="string">r'2.0'</span>, <span class="string">r'3.0'</span>, <span class="string">r'4.0'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加文字</span></span><br><span class="line">plt.text(<span class="number">8</span>, <span class="number">1.5</span>, <span class="string">r'$x \in [0.0, \ 10.0]$'</span>, color=<span class="string">'k'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">plt.text(<span class="number">8</span>, <span class="number">1.8</span>, <span class="string">r'$y \in [-1.0, \ 4.0]$'</span>, color=<span class="string">'k'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 特殊点添加注解</span></span><br><span class="line">plt.scatter([<span class="number">8</span>,],[np.sqrt(<span class="number">8</span>),], <span class="number">50</span>, color =<span class="string">'m'</span>)  <span class="comment"># 使用散点图放大当前点</span></span><br><span class="line">plt.annotate(<span class="string">r'$2\sqrt&#123;2&#125;$'</span>, xy=(<span class="number">8</span>, np.sqrt(<span class="number">8</span>)), xytext=(<span class="number">8.5</span>, <span class="number">2.2</span>), fontsize=<span class="number">16</span>, color=<span class="string">'#090909'</span>, arrowprops=dict(arrowstyle=<span class="string">'-&gt;'</span>, connectionstyle=<span class="string">'arc3, rad=0.1'</span>, color=<span class="string">'#090909'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置标题、x轴、y轴</span></span><br><span class="line">plt.title(<span class="string">r'$the \ function \ figure \ of \ cos(), \ sin() \ and \ sqrt()$'</span>, fontsize=<span class="number">19</span>)</span><br><span class="line">plt.xlabel(<span class="string">r'$the \ input \ value \ of \ x$'</span>, fontsize=<span class="number">18</span>, labelpad=<span class="number">88.8</span>)</span><br><span class="line">plt.ylabel(<span class="string">r'$y = f(x)$'</span>, fontsize=<span class="number">18</span>, labelpad=<span class="number">12.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置图例及位置</span></span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>)    </span><br><span class="line"><span class="comment"># plt.legend(['cos(x)', 'sin(x)', 'sqrt(x)'], loc='up right')</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示网格线</span></span><br><span class="line">plt.grid(<span class="literal">True</span>)    </span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示绘图</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+        <p>seaborn包基于matplotlib设计，很多matplotlib中的函数在seaborn中同样适用，例如plt.title()等.seaborn还提供了对pandas、numpy等数据结构的完美支持并可以绘制出独具特色并含有统计信息的高品质图形.其核心功能包括优美的绘图模板、高级统计绘图能力以及绘制时间序列数据等.</p>
+<h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化单一特征"><a href="#可视化单一特征" class="headerlink" title="可视化单一特征"></a>可视化单一特征</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot() <span class="comment">#连续型数据的直方分布</span></span><br><span class="line">sns.kdeplot() <span class="comment">#连续型数据的核密度分布</span></span><br><span class="line">sns.stripplot() <span class="comment">#绘制一维散点图，可通过其中的jitter=True参数对数据添加噪声</span></span><br><span class="line">sns.boxplot() <span class="comment">#绘制箱线图</span></span><br><span class="line">sns.violinplot() <span class="comment">#绘制小提琴图</span></span><br><span class="line">sns.barplot() <span class="comment">#绘制条形图，需要输入每个矩形条的位置以及高度</span></span><br><span class="line">sns.countplot() <span class="comment">#绘制计数图，其可自动统计矩形条的高度，是barplot的简便版本</span></span><br><span class="line">sns.swarmplot() <span class="comment">#绘制集群图，即所有的数据点都会尽量围绕中线分布，避免重叠</span></span><br><span class="line">sns.rugplot() <span class="comment">#绘制密度条图，用来查看数据的一维分布，其效果类似于stripplot.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化两个特征"><a href="#可视化两个特征" class="headerlink" title="可视化两个特征"></a>可视化两个特征</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot() <span class="comment">#绘制散点图(两个连续型特征),默认会添加两个特征的直方图</span></span><br><span class="line">sns.lmplot() <span class="comment">#绘制带有回归线的散点图(两个连续型特征)</span></span><br><span class="line">sns.kdeplot() <span class="comment">#绘制二维核密度图(两个连续型特征)</span></span><br><span class="line">sns.boxplot() <span class="comment">#绘制箱线图(一个为离散一个为连续型特征)</span></span><br><span class="line">sns.violinplot() <span class="comment">#绘制小提琴图(一个离散一个连续型特征)</span></span><br><span class="line">sns.barplot() <span class="comment">#绘制条形图(一个离散一个连续型特征)并自定添加每个矩形的误差条</span></span><br><span class="line">sns.countplot() <span class="comment">#绘制计数图(两个离散型)，其可自动统计每个矩形条的高度</span></span><br><span class="line">sns.stripplot() <span class="comment">#绘制二维散点图(一个离散一个连续型)，可通过其中的jitter=True对数据添加噪声.</span></span><br><span class="line">sns.swarmplot() <span class="comment">#绘制集群图(一个离散一个连续型),即所有的数据点都会尽量围绕中线分布，避免重叠</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化多个特征"><a href="#可视化多个特征" class="headerlink" title="可视化多个特征"></a>可视化多个特征</h2><p>当添加第三个特征时可以对之前的函数添加新参数hue，也可以使用新函数。如果使用参数hue，则hue多对应的特征类别不宜过多.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sns.stripplot() <span class="comment">#二维三特征散点图</span></span><br><span class="line">sns.barplot() <span class="comment">#二维三特征条形图</span></span><br><span class="line">sns.violinplot() <span class="comment">#二维三特征小提琴图</span></span><br><span class="line">sns.boxplot() <span class="comment">#二维三特征箱线图</span></span><br><span class="line">sns.swarmplot() <span class="comment">#二维三特征集群图</span></span><br><span class="line">sns.factorplot() <span class="comment">#二维三特征趋势图，默认添加误差条，可对其添加col参数绘制第四特征</span></span><br><span class="line">sns.heatmap() <span class="comment">#热力图，需处理数据集格式.</span></span><br><span class="line">sns.clustermap() <span class="comment">#聚类热力图,需处理数据集格式.</span></span><br><span class="line">sns.pairplot() <span class="comment">#绘制特征散点图矩阵，可以用来快速检测数据集所有特征的分布情况.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="绘制子图"><a href="#绘制子图" class="headerlink" title="绘制子图"></a>绘制子图</h3><p>绘制子图和Matplotlib方式相同，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">sns.distplot(df.living, ax=axes[<span class="number">0</span>])</span><br><span class="line">sns.distplot(df.lot, ax=axes[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="调色板palette"><a href="#调色板palette" class="headerlink" title="调色板palette"></a>调色板palette</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> sns.color_palette():</span><br><span class="line">    sns.barplot()</span><br></pre></td></tr></table></figure>
+
+<p>用于临时修改绘图色彩，他的三个参数为：<br>    palette：色彩模板名称，可以是deep、muted、pastel、bright、dark和colorblind以及任何matplotlib调色板名称<br>    n_colors：指定颜色的个数，默认为6<br>    desat：调整颜色饱和度(0为完全灰度)<br>该函数结合sns.palplot()函数使用可查看所使用调色板的具体颜色，用法为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette())</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_palette() <span class="comment">#用于修改全局调色板样式，其参数用法与sns.color_palette()一致</span></span><br><span class="line">sns.reset_defaults() <span class="comment">#还原所有RC参数，即重置调色板.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="保存图形"><a href="#保存图形" class="headerlink" title="保存图形"></a>保存图形</h2><p>将绘图函数赋值给变量a,并查看该变量的类型，如果为AxesSubplot类型，则使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.get_figure().savefig(<span class="string">'fig.eps'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果为PairGrid类型，则使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.save(<span class="string">'fig.eps'</span>)</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -198,17 +224,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">python学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -259,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://nixsui.github.io/2019/08/03/matlotlib参考/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://nixsui.github.io/2019/08/03/seaborn/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -273,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/03/seaborn/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          seaborn
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/02/Pandas记录/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Pandas记录</div>
+    <a href="/2019/08/03/matlotlib参考/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">matlotlib参考</div>
       <i class="icon-circle-right"></i>
     </a>
   

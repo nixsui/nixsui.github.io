@@ -150,6 +150,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-seaborn" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/03/seaborn/">seaborn</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/03/seaborn/" class="archive-article-date">
+  	<time datetime="2019-08-03T15:01:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>seaborn包基于matplotlib设计，很多matplotlib中的函数在seaborn中同样适用，例如plt.title()等.seaborn还提供了对pandas、numpy等数据结构的完美支持并可以绘制出独具特色并含有统计信息的高品质图形.其核心功能包括优美的绘图模板、高级统计绘图能力以及绘制时间序列数据等.</p>
+<h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化单一特征"><a href="#可视化单一特征" class="headerlink" title="可视化单一特征"></a>可视化单一特征</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot() <span class="comment">#连续型数据的直方分布</span></span><br><span class="line">sns.kdeplot() <span class="comment">#连续型数据的核密度分布</span></span><br><span class="line">sns.stripplot() <span class="comment">#绘制一维散点图，可通过其中的jitter=True参数对数据添加噪声</span></span><br><span class="line">sns.boxplot() <span class="comment">#绘制箱线图</span></span><br><span class="line">sns.violinplot() <span class="comment">#绘制小提琴图</span></span><br><span class="line">sns.barplot() <span class="comment">#绘制条形图，需要输入每个矩形条的位置以及高度</span></span><br><span class="line">sns.countplot() <span class="comment">#绘制计数图，其可自动统计矩形条的高度，是barplot的简便版本</span></span><br><span class="line">sns.swarmplot() <span class="comment">#绘制集群图，即所有的数据点都会尽量围绕中线分布，避免重叠</span></span><br><span class="line">sns.rugplot() <span class="comment">#绘制密度条图，用来查看数据的一维分布，其效果类似于stripplot.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化两个特征"><a href="#可视化两个特征" class="headerlink" title="可视化两个特征"></a>可视化两个特征</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot() <span class="comment">#绘制散点图(两个连续型特征),默认会添加两个特征的直方图</span></span><br><span class="line">sns.lmplot() <span class="comment">#绘制带有回归线的散点图(两个连续型特征)</span></span><br><span class="line">sns.kdeplot() <span class="comment">#绘制二维核密度图(两个连续型特征)</span></span><br><span class="line">sns.boxplot() <span class="comment">#绘制箱线图(一个为离散一个为连续型特征)</span></span><br><span class="line">sns.violinplot() <span class="comment">#绘制小提琴图(一个离散一个连续型特征)</span></span><br><span class="line">sns.barplot() <span class="comment">#绘制条形图(一个离散一个连续型特征)并自定添加每个矩形的误差条</span></span><br><span class="line">sns.countplot() <span class="comment">#绘制计数图(两个离散型)，其可自动统计每个矩形条的高度</span></span><br><span class="line">sns.stripplot() <span class="comment">#绘制二维散点图(一个离散一个连续型)，可通过其中的jitter=True对数据添加噪声.</span></span><br><span class="line">sns.swarmplot() <span class="comment">#绘制集群图(一个离散一个连续型),即所有的数据点都会尽量围绕中线分布，避免重叠</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化多个特征"><a href="#可视化多个特征" class="headerlink" title="可视化多个特征"></a>可视化多个特征</h2><p>当添加第三个特征时可以对之前的函数添加新参数hue，也可以使用新函数。如果使用参数hue，则hue多对应的特征类别不宜过多.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sns.stripplot() <span class="comment">#二维三特征散点图</span></span><br><span class="line">sns.barplot() <span class="comment">#二维三特征条形图</span></span><br><span class="line">sns.violinplot() <span class="comment">#二维三特征小提琴图</span></span><br><span class="line">sns.boxplot() <span class="comment">#二维三特征箱线图</span></span><br><span class="line">sns.swarmplot() <span class="comment">#二维三特征集群图</span></span><br><span class="line">sns.factorplot() <span class="comment">#二维三特征趋势图，默认添加误差条，可对其添加col参数绘制第四特征</span></span><br><span class="line">sns.heatmap() <span class="comment">#热力图，需处理数据集格式.</span></span><br><span class="line">sns.clustermap() <span class="comment">#聚类热力图,需处理数据集格式.</span></span><br><span class="line">sns.pairplot() <span class="comment">#绘制特征散点图矩阵，可以用来快速检测数据集所有特征的分布情况.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="绘制子图"><a href="#绘制子图" class="headerlink" title="绘制子图"></a>绘制子图</h3><p>绘制子图和Matplotlib方式相同，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">sns.distplot(df.living, ax=axes[<span class="number">0</span>])</span><br><span class="line">sns.distplot(df.lot, ax=axes[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="调色板palette"><a href="#调色板palette" class="headerlink" title="调色板palette"></a>调色板palette</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> sns.color_palette():</span><br><span class="line">    sns.barplot()</span><br></pre></td></tr></table></figure>
+
+<p>用于临时修改绘图色彩，他的三个参数为：<br>    palette：色彩模板名称，可以是deep、muted、pastel、bright、dark和colorblind以及任何matplotlib调色板名称<br>    n_colors：指定颜色的个数，默认为6<br>    desat：调整颜色饱和度(0为完全灰度)<br>该函数结合sns.palplot()函数使用可查看所使用调色板的具体颜色，用法为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette())</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_palette() <span class="comment">#用于修改全局调色板样式，其参数用法与sns.color_palette()一致</span></span><br><span class="line">sns.reset_defaults() <span class="comment">#还原所有RC参数，即重置调色板.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="保存图形"><a href="#保存图形" class="headerlink" title="保存图形"></a>保存图形</h2><p>将绘图函数赋值给变量a,并查看该变量的类型，如果为AxesSubplot类型，则使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.get_figure().savefig(<span class="string">'fig.eps'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果为PairGrid类型，则使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.save(<span class="string">'fig.eps'</span>)</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/03/seaborn/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-matlotlib参考" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
