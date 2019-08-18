@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?$$&space;d_{\star}(P)=\mathbf{w}_{\star}^{\mathrm{T}}&space;\phi_{5}(P)&space;$$">
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?$$&space;\begin{aligned}&space;\mathbf{w}_{\star}=\underset{\hat{\mathbf{w}}_{\star}}{\operatorname{argmin}}&space;&&space;\sum_{i}^{N}\left(t_{\star}^{i}-\hat{\mathbf{w}}_{\star}^{\mathrm{T}}&space;\phi_{5}\left(P^{i}\right)\right)^{2}+\lambda\left\|\hat{\mathbf{w}}_{\star}\right\|^{2}&space;\\&space;t_{x}&space;&=\left(G_{x}-P_{x}\right)&space;/&space;P_{w}&space;\\&space;t_{y}&space;&=\left(G_{y}-P_{y}\right)&space;/&space;P_{h}&space;\\&space;t_{w}&space;&=\log&space;\left(G_{w}&space;/&space;P_{w}\right)&space;\\&space;t_{h}&space;&=\log&space;\left(G_{h}&space;/&space;P_{h}\right)&space;\end{aligned}&space;$$">
 <meta property="og:image" content="https://nixsui.github.io/assets/img/RCNNNET.png">
-<meta property="og:updated_time" content="2019-08-18T05:32:49.354Z">
+<meta property="og:updated_time" content="2019-08-18T05:39:58.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN学习笔记">
 <meta name="twitter:description" content="参考文献出于尊重大家的劳动成果先写上参考文献https://zhuanlan.zhihu.com/p/27473413https://blog.csdn.net/v1_vivian/article/details/78599229https://blog.csdn.net/Tomxiaodai/article/details/81749845https://my.oschina.net/u/876">
@@ -181,6 +181,7 @@
         <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>出于尊重大家的劳动成果先写上参考文献<br><a href="https://zhuanlan.zhihu.com/p/27473413" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27473413</a><br><a href="https://blog.csdn.net/v1_vivian/article/details/78599229" target="_blank" rel="noopener">https://blog.csdn.net/v1_vivian/article/details/78599229</a><br><a href="https://blog.csdn.net/Tomxiaodai/article/details/81749845" target="_blank" rel="noopener">https://blog.csdn.net/Tomxiaodai/article/details/81749845</a><br><a href="https://my.oschina.net/u/876354/blog/1787921" target="_blank" rel="noopener">https://my.oschina.net/u/876354/blog/1787921</a></p>
 <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>论文中一句话应该是对CNN有开创性的作用：<br>central issue：<br>To what extent do the CNN classification results on ImageNet generalize to object detection results on the PASCAL VOC challenge?</p>
 <p>在深度学习广泛应用之前，传统的图像处理，目标检测等领域的常用的方法是使用特征描述子进行的。随着卷积神经网络的提出，这种特征描述子方式的图像处理方法各种被吊打。R-CNN作为第一篇目标检测领域的深度学习文章，很大程度提高了目标识别的精度。在PASCAL VOC2012数据集上将MAP从31.5%提升至53.7%。R-CNN主要解决了两个问题：<br>1、如何利用深度神经网去做目标的定位<br>2、如何在一个小规模的数据集上训练性能跟好的网络模型<br>一张图概括RCNN基本思想：<br><img src="/assets/img/RCNN1.png" alt="avatar"><br>简单说一下，图片上其实是在说明RCNN的工作过程，首先通过Selectiv Search选择区域建议候选框。(关于Selective Search推荐去看一个知乎的帖子<a href="https://zhuanlan.zhihu.com/p/27467369)。然后对候选框进行CNN卷积提取每个建议候选框特征，并通过SVM对这些特征进行分类。最后为了准确性在SVM分类后区域基础上进行BoundingBox回归。" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27467369)。然后对候选框进行CNN卷积提取每个建议候选框特征，并通过SVM对这些特征进行分类。最后为了准确性在SVM分类后区域基础上进行BoundingBox回归。</a></p>
+<a id="more"></a>
 <h2 id="RCNN的架构"><a href="#RCNN的架构" class="headerlink" title="RCNN的架构"></a>RCNN的架构</h2><h3 id="模块化分析"><a href="#模块化分析" class="headerlink" title="模块化分析"></a>模块化分析</h3><h4 id="模块1：Selective-Search获取区域"><a href="#模块1：Selective-Search获取区域" class="headerlink" title="模块1：Selective Search获取区域"></a>模块1：Selective Search获取区域</h4><h5 id="区域获取"><a href="#区域获取" class="headerlink" title="区域获取"></a>区域获取</h5><p>Selective Search产生2000个候选区域，区域和物体分类无关，包含了物体。</p>
 <h5 id="区域预处理"><a href="#区域预处理" class="headerlink" title="区域预处理"></a>区域预处理</h5><p>RCNN使用的是Alexnet网络，需要输入227*227尺寸的图像，所以需要对区域进行预处理。在对 Region 进行变换的时候，首先对这些区域进行膨胀处理，在其 box 周围附加了 p 个像素，也就是人为添加了边框，在这里 p=16。</p>
 <h4 id="模块2：AlexNet网络"><a href="#模块2：AlexNet网络" class="headerlink" title="模块2：AlexNet网络"></a>模块2：AlexNet网络</h4><p>1、对所有区域进行特征提取(FC7)<br>2、fine-tunef</p>
@@ -422,11 +423,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">leetcode刷题</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">leetcode刷题</a>
               </li>
              
               <li class="article-tag-list-item">
