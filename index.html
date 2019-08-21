@@ -150,6 +150,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SPP-net学习记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/21/SPP-net学习记录/">SPP-net学习记录</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/21/SPP-net学习记录/" class="archive-article-date">
+  	<time datetime="2019-08-21T12:37:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://zhuanlan.zhihu.com/p/27485018" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27485018</a><br><a href="https://blog.csdn.net/mengduanhonglou/article/details/78470682" target="_blank" rel="noopener">https://blog.csdn.net/mengduanhonglou/article/details/78470682</a><br><a href="https://blog.csdn.net/bryant_meng/article/details/78615353" target="_blank" rel="noopener">https://blog.csdn.net/bryant_meng/article/details/78615353</a></p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>RCNN通过卷积神经网络提取图像特征的方式提取图像特征开辟了图像检测领域的一片新的天地,在之后的几年里都是基于其的改进,这篇文章,来记录一下第一篇改进的方式SPP-net.首先在RCNN中的最大问题就是速度太慢.其根本原因是由于其先进行Selective Search(SS),然后再对图像做卷积.这样会造成很大的参数的浪费.而SPP-net则使用的是全图的CNN,而这样做造成的影响就是没法像RCNN那样输入固定的224*224的输入,而全连接层部分的参数是神经元对于所有输入的连接权重，也就是说输入尺寸不固定的话，全连接层参数的个数都不能固定。所以提出一个叫做“空间金字塔池化”(spatial pyramid pooling,SPP)的池化策略以消除上述限制。<br>在知乎的帖子上发现另一种理解方式,他是分开考虑的,首先是性能瓶颈,所以不应该对SS后的区域进行尺度变化,所以才要spp,然后再改进速度瓶颈,全图进行CNN特征提取.其实我个人的理解就是作者想对全图进行卷积然后发现到最后全连接没法办了,所以加个spp吧.哈哈哈,菜鸡头脑就是这么简单粗暴.(附上知乎大佬链接<a href="https://zhuanlan.zhihu.com/p/27485018" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27485018</a>)</p>
+<h2 id="对RCNN的改进之处"><a href="#对RCNN的改进之处" class="headerlink" title="对RCNN的改进之处"></a>对RCNN的改进之处</h2><p>首先上图对比二者基本区别:<br><img src="/assets/img/SPP.png" alt="avatar"><br>上面这个图可以看出SPPnet和RCNN的区别，首先是输入不需要放缩到指定大小。其次是增加了一个空间金字塔池化层，还有最重要的一点是每幅图片只需要提取一次特征。<br>对于RCNN的速度慢的原因:<br>每张图都有2k个区域进行CNN计算,重复区域就太多啦.<br>改进之处:<br>1.直接整图进行CNN特征提取,所有区域共享计算(一遍)<br>    在conv5层输出上提取所有区域特征<br>2.引入空间金字塔池化(Spatial Pyramid Pooling)<br>    为不同尺寸的区域,在conv5输出提取特征<br>    映射到尺寸固定的全连接层上</p>
+        
+          <a class="article-more-a" href="/2019/08/21/SPP-net学习记录/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/21/SPP-net学习记录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-R-CNN学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -629,15 +696,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">leetcode刷题</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
             
             <div class="clearfix"></div>

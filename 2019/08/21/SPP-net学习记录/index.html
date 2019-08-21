@@ -6,20 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://nixsui.github.io">
-  <title>Gray</title>
+  <title>SPP-net学习记录 | Gray</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="body{ 			background: #fff; 		} 		.bufBox{ 			float: left; 			width: 50px; 			height: 50px; 			background: #ddd; 			border-radius: 5px; 			text-align: center; 			line-height: 50px; 			margin: 0">
+  <meta name="description" content="参考文献https://zhuanlan.zhihu.com/p/27485018https://blog.csdn.net/mengduanhonglou/article/details/78470682https://blog.csdn.net/bryant_meng/article/details/78615353 综述RCNN通过卷积神经网络提取图像特征的方式提取图像特征开辟了图像检测领域">
 <meta name="keywords" content="python，c++, ml, dl">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gray">
-<meta property="og:url" content="https://nixsui.github.io/assets/demo/coffee_pc_demo/pro-con.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPP-net学习记录">
+<meta property="og:url" content="https://nixsui.github.io/2019/08/21/SPP-net学习记录/index.html">
 <meta property="og:site_name" content="Gray">
-<meta property="og:description" content="body{ 			background: #fff; 		} 		.bufBox{ 			float: left; 			width: 50px; 			height: 50px; 			background: #ddd; 			border-radius: 5px; 			text-align: center; 			line-height: 50px; 			margin: 0">
+<meta property="og:description" content="参考文献https://zhuanlan.zhihu.com/p/27485018https://blog.csdn.net/mengduanhonglou/article/details/78470682https://blog.csdn.net/bryant_meng/article/details/78615353 综述RCNN通过卷积神经网络提取图像特征的方式提取图像特征开辟了图像检测领域">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-03T13:20:14.543Z">
+<meta property="og:image" content="https://nixsui.github.io/assets/img/SPP.png">
+<meta property="og:image" content="https://nixsui.github.io/assets/img/SPP1.png">
+<meta property="og:image" content="https://nixsui.github.io/assets/img/SPP2.png">
+<meta property="og:image" content="https://nixsui.github.io/assets/img/SPP3.png">
+<meta property="og:image" content="https://nixsui.github.io/assets/img/SPP.jpg">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?$$&space;x^{\prime}=\lfloor&space;x&space;/&space;S\rfloor+&space;1&space;$$">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?$$&space;x^{\prime}=\lceil&space;x&space;/&space;S\rceil-&space;1&space;$$">
+<meta property="og:updated_time" content="2019-08-21T13:45:47.623Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gray">
-<meta name="twitter:description" content="body{ 			background: #fff; 		} 		.bufBox{ 			float: left; 			width: 50px; 			height: 50px; 			background: #ddd; 			border-radius: 5px; 			text-align: center; 			line-height: 50px; 			margin: 0">
+<meta name="twitter:title" content="SPP-net学习记录">
+<meta name="twitter:description" content="参考文献https://zhuanlan.zhihu.com/p/27485018https://blog.csdn.net/mengduanhonglou/article/details/78470682https://blog.csdn.net/bryant_meng/article/details/78615353 综述RCNN通过卷积神经网络提取图像特征的方式提取图像特征开辟了图像检测领域">
+<meta name="twitter:image" content="https://nixsui.github.io/assets/img/SPP.png">
   
     <link rel="alternative" href="/atom.xml" title="Gray" type="application/atom+xml">
   
@@ -149,68 +157,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-SPP-net学习记录" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SPP-net学习记录
+    </h1>
+  
+
+        
+        <a href="/2019/08/21/SPP-net学习记录/" class="archive-article-date">
+  	<time datetime="2019-08-21T12:37:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-	<style type="text/css">
-		body{
-			background: #fff;
-		}
-		.bufBox{
-			float: left;
-			width: 50px;
-			height: 50px;
-			background: #ddd;
-			border-radius: 5px;
-			text-align: center;
-			line-height: 50px;
-			margin: 0 5px;
-			position:relative;
-			overflow: hidden;
-		}
-		.bufCover{
-			width: 100%;
-			height: 0;
-			background: #f0f;
-			border-radius: 5px;
-			position: absolute;
-		}
-		#buf{
-			height: 60px;
-		}
-		#des p{
-			padding: 4px 0;
-			margin: 0;
-			font-size: 14px;
-		}
-		#des .desPro{
-			color: #333;
-			background: #EEE;
-		}
-		#des .desCon{
-			color: #EEE;
-			background: #333;
-		}
-		#des .desSpe{
-			background: #BBB;
-		}
-	</style>
-	<script type="text/javascript" src="../jquery.js"></script>
-</head>
-<body>
-	<button id="produce">生产</button>
-	<button id="consume">消费</button>
-	<div id="buf">
-	</div>
-	<div id="des"><p></p></div>
-	<script type="text/javascript" src="pro-con.js"></script>
-</body>
-</html>
+        <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://zhuanlan.zhihu.com/p/27485018" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27485018</a><br><a href="https://blog.csdn.net/mengduanhonglou/article/details/78470682" target="_blank" rel="noopener">https://blog.csdn.net/mengduanhonglou/article/details/78470682</a><br><a href="https://blog.csdn.net/bryant_meng/article/details/78615353" target="_blank" rel="noopener">https://blog.csdn.net/bryant_meng/article/details/78615353</a></p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>RCNN通过卷积神经网络提取图像特征的方式提取图像特征开辟了图像检测领域的一片新的天地,在之后的几年里都是基于其的改进,这篇文章,来记录一下第一篇改进的方式SPP-net.首先在RCNN中的最大问题就是速度太慢.其根本原因是由于其先进行Selective Search(SS),然后再对图像做卷积.这样会造成很大的参数的浪费.而SPP-net则使用的是全图的CNN,而这样做造成的影响就是没法像RCNN那样输入固定的224*224的输入,而全连接层部分的参数是神经元对于所有输入的连接权重，也就是说输入尺寸不固定的话，全连接层参数的个数都不能固定。所以提出一个叫做“空间金字塔池化”(spatial pyramid pooling,SPP)的池化策略以消除上述限制。<br>在知乎的帖子上发现另一种理解方式,他是分开考虑的,首先是性能瓶颈,所以不应该对SS后的区域进行尺度变化,所以才要spp,然后再改进速度瓶颈,全图进行CNN特征提取.其实我个人的理解就是作者想对全图进行卷积然后发现到最后全连接没法办了,所以加个spp吧.哈哈哈,菜鸡头脑就是这么简单粗暴.(附上知乎大佬链接<a href="https://zhuanlan.zhihu.com/p/27485018" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27485018</a>)</p>
+<h2 id="对RCNN的改进之处"><a href="#对RCNN的改进之处" class="headerlink" title="对RCNN的改进之处"></a>对RCNN的改进之处</h2><p>首先上图对比二者基本区别:<br><img src="/assets/img/SPP.png" alt="avatar"><br>上面这个图可以看出SPPnet和RCNN的区别，首先是输入不需要放缩到指定大小。其次是增加了一个空间金字塔池化层，还有最重要的一点是每幅图片只需要提取一次特征。<br>对于RCNN的速度慢的原因:<br>每张图都有2k个区域进行CNN计算,重复区域就太多啦.<br>改进之处:<br>1.直接整图进行CNN特征提取,所有区域共享计算(一遍)<br>    在conv5层输出上提取所有区域特征<br>2.引入空间金字塔池化(Spatial Pyramid Pooling)<br>    为不同尺寸的区域,在conv5输出提取特征<br>    映射到尺寸固定的全连接层上</p>
+<a id="more"></a>
+<h2 id="SPP-net网络结构"><a href="#SPP-net网络结构" class="headerlink" title="SPP-net网络结构"></a>SPP-net网络结构</h2><h3 id="SPP-net网络结构-1"><a href="#SPP-net网络结构-1" class="headerlink" title="SPP-net网络结构:"></a>SPP-net网络结构:</h3><p><img src="/assets/img/SPP1.png" alt="avatar"></p>
+<h3 id="卷积层特征图"><a href="#卷积层特征图" class="headerlink" title="卷积层特征图"></a>卷积层特征图</h3><p><img src="/assets/img/SPP2.png" alt="avatar"><br>SPPNet通过可视化Conv5层特征，发现卷积特征其实保存了空间位置信息（数学推理中更容易发现这点），并且每一个卷积核负责提取不同的特征，比如C图175、55卷积核的特征，其中175负责提取窗口特征，55负责提取圆形的类似于车轮的特征。我们可以通过传统的方法聚集这些特征，例如词袋模型或是空间金字塔的方法。<br>总结来说,输入图片的某个位置的特征反应在特征图上也是相同的位置,对某个ROI区域特征提取只需要在特征图上进行提取就可以了.</p>
+<h3 id="空间金字塔池化层"><a href="#空间金字塔池化层" class="headerlink" title="空间金字塔池化层"></a>空间金字塔池化层</h3><p>替换Conv5的Pooling层<br>3个level和21个bin:1x1,2x2,4x4<br>bin内使用max pooling<br><img src="/assets/img/SPP3.png" alt="avatar"></p>
+<h2 id="SPP-net训练"><a href="#SPP-net训练" class="headerlink" title="SPP-net训练"></a>SPP-net训练</h2><h3 id="多尺度原理"><a href="#多尺度原理" class="headerlink" title="多尺度原理"></a>多尺度原理</h3><p>1.multi-size训练，输入尺寸在[180,224]之间，假设最后一个卷积层的输出大小为a×a，若给定金字塔层有n×n 个bins，进行滑动窗池化，窗口尺寸为win=⌈a/n⌉，步长为str=⌊a/n⌋，使用一个网络完成一个完整epoch的训练，之后切换到另外一个网络。只是在训练的时候用到多尺寸，测试时直接将SPPNet应用于任意尺寸的图像。<br>2.如果原图输入是224x224，对于conv5出来后的输出，是13x13x256的，可以理解成有256个这样的filter，每个filter对应一张13x13的reponse map。<br>重点内容如果像上图那样将reponse map分成4x4 2x2 1x1三张子图，做max pooling后，出来的特征就是固定长度的(16+4+1)x256那么多的维度了。如果原图的输入不是224x224，出来的特征依然是(16+4+1)x256<br>直觉地说，可以理解成将原来固定大小为(3x3)窗口的pool5改成了自适应窗口大小，窗口的大小和reponse map成比例，保证了经过pooling后出来的feature的长度是一致的。</p>
+<h3 id="SPP-net方法"><a href="#SPP-net方法" class="headerlink" title="SPP-net方法"></a>SPP-net方法</h3><p>理论上说，SPP-net支持直接以多尺度的原始图片作为输入后直接BP即可。实际上，caffe等实现中，为了计算的方便，输入是固定了尺度了的。<br>  所以为了使得在固定输出尺度的情况下也能够做到SPP-net的效果，就需要定义一个新的SSP-layer<br>  作者以输入224x224举例，这时候conv5出来的reponse map为13x13，计算出来的步长如下图所示。<br><img src="/assets/img/SPP.jpg" alt="avatar"><br>具体的计算方法，看一眼上面原理的Single-size training部分就明白了。如果输入改成180x180，这时候conv5出来的reponse map为10x10，类似的方法，能够得到新的pooling参数。<br>两种尺度下，在SSP后，输出的特征维度都是(9+4+1)x256，之后接全连接层即可。<br>训练的时候，224x224的图片通过随机crop得到，180x180的图片通过缩放224x224的图片得到。之后，迭代训练，即用224的图片训练一个epoch，之后180的图片训练一个epoth，交替地进行。</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>1.如何从一个region proposal 映射到feature map的位置？<br>SPPNet通过角点尽量将图像像素映射到feature map感受野的中央，假设每一层的padding都是p/2，p为卷积核大小。对于feature map的一个像素（x’,y’），其实际感受野为：（Sx‘，Sy’），其中S为之前所有层步伐的乘积。然后对于region proposal的位置，我们获取左上右下两个点对应的feature map的位置，然后取特征就好了。<br>左上角映射为：<br><a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;x^{\prime}=\lfloor&space;x&space;/&space;S\rfloor&plus;&space;1&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;x^{\prime}=\lfloor&space;x&space;/&space;S\rfloor&plus;&space;1&space;$$" title="$$ x^{\prime}=\lfloor x / S\rfloor+ 1 $$"></a><br>右下角映射为：<br><a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;x^{\prime}=\lceil&space;x&space;/&space;S\rceil-&space;1&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;x^{\prime}=\lceil&space;x&space;/&space;S\rceil-&space;1&space;$$" title="$$ x^{\prime}=\lceil x / S\rceil- 1 $$"></a><br>当然，如果padding大小不一致，那么就需要计算相应的偏移值啦。</p>
+<h2 id="SSP-net问题"><a href="#SSP-net问题" class="headerlink" title="SSP-net问题"></a>SSP-net问题</h2><p>1.继承了R-CNN大量问题<br>    a.需要存储大量特征<br>    b.复杂的多阶段训练<br>    c.训练时间任然很长<br>2.新问题<br>SPP层之前的所有卷积层参数没有进行fine tune</p>
+
       
 
       
@@ -289,7 +267,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://nixsui.github.io/assets/demo/coffee_pc_demo/pro-con.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://nixsui.github.io/2019/08/21/SPP-net学习记录/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,6 +279,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/16/R-CNN学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">R-CNN学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -351,7 +339,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
