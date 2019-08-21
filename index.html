@@ -150,6 +150,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Fast-R-CNN学习记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/21/Fast-R-CNN学习记录/">Fast R-CNN学习记录</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/21/Fast-R-CNN学习记录/" class="archive-article-date">
+  	<time datetime="2019-08-21T13:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://zhuanlan.zhihu.com/p/24780395" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24780395</a><br><a href="https://blog.csdn.net/zijin0802034/article/details/53055010" target="_blank" rel="noopener">https://blog.csdn.net/zijin0802034/article/details/53055010</a><br><a href="https://arxiv.org/pdf/1504.08083v2.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1504.08083v2.pdf</a><br><a href="https://zhuanlan.zhihu.com/p/27582096" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27582096</a></p>
+<h2 id="说在最前面的很对的一句话"><a href="#说在最前面的很对的一句话" class="headerlink" title="说在最前面的很对的一句话"></a>说在最前面的很对的一句话</h2><p>(感觉参考文献2博客写的很好,没啥可以补充的了,大体上直接拿过来做笔记了)<br>首先看到了第二个参考文献说的一句话:<br>RCNN解决了为什么不把目标检测的问题转化到分类的问题上呢？<br>Fast RCNN解决的就是为什么一起输出bounding box和label呢？<br>Faster-RCNN解决的为什么还要使用select search呢？(摘自知乎）。<br>Fast RCNN是RCNN的加速版，主要是针对之前的RCNN和SPPNET进行改进。</p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>在Fast-RCNN之前主要在目标检测方面有RBG大神的RCNN和何凯明的SPPNET，但是这两种网络结构都存在缺点，所以作者总结上述的不足，进行改进。首先RCNN存在以下的缺点:<br>    1.训练是多阶段的。首先通过selective search提取Proposal，然后利用CNN提取特征，之后用SVM作分类，最后使用Bounding Box Regression。<br>    2.训练的时间空间开销大。RCNN中，SVM和Bounding Box regressor特征都是从磁盘读取，这个读取操作不仅耗时，还要占据磁盘空间存放特征。<br>    3.目标检测测试比较慢，因为每一个图像都要提取2K左右的区域，很多区域都是重复的，导致特征冗余。<br>整个网络的结构如图所示：<br><img src="/assets/img/fastrcnn.png" alt="avatar"><br>上图显示了Fast-RCNN的主要过程，首先输入整张图经过一系列的卷积层和max pooling得到一个conv feature map。然后每一个proposal 经过RoI pooling层得到一个固定长度的feature。每一个feature在经过一个FC层，最后输入到两个输出层，产生两个优化的目标，一个用来分类，一个用来优化bounding box。</p>
+        
+          <a class="article-more-a" href="/2019/08/21/Fast-R-CNN学习记录/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/21/Fast-R-CNN学习记录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SPP-net学习记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
