@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://nixsui.github.io/assets/img/fastrcnn5.png">
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?$$&space;W&space;\approx&space;U&space;\Sigma_{t}&space;V^{T}&space;$$">
 <meta property="og:image" content="https://nixsui.github.io/assets/img/fastrcnn4.png">
-<meta property="og:updated_time" content="2019-08-21T15:38:05.734Z">
+<meta property="og:updated_time" content="2019-08-22T16:34:28.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fast R-CNN学习记录">
 <meta name="twitter:description" content="参考文献https://zhuanlan.zhihu.com/p/24780395https://blog.csdn.net/zijin0802034/article/details/53055010https://arxiv.org/pdf/1504.08083v2.pdfhttps://zhuanlan.zhihu.com/p/27582096 说在最前面的很对的一句话(感觉参考文献2博客写的">
@@ -192,7 +192,7 @@
 <h3 id="感兴趣区域池化-ROI-pooling"><a href="#感兴趣区域池化-ROI-pooling" class="headerlink" title="感兴趣区域池化(ROI pooling)"></a>感兴趣区域池化(ROI pooling)</h3><p>这个地方和SPP-net感觉很想,准确的说应该是(SPP Pooling)的单层特例,将网络的最后一个max pooling层改为RoI pooling layer，设置H,W使得和网络的第一个全连接层匹配。把网络的最后一个FC层和softmax层修改为两个网络层，分别用来分类和Bounding box regress。<br>网络的输入变为图片和图片的ROI.<br><img src="/assets/img/fastrcnn2.png" alt="avatar"><br>在池化过程中,对非重叠区域,进行类似Max Pooling操作.对于重叠区域,采用多个区域的偏导之和:<br><img src="/assets/img/fastrcnn3.png" alt="avatar"></p>
 <h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>Fast RCNN将分类与回归做到了一个网络里面，因此损失函数必定是多任务的：<br><a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;L\left(p,&space;u,&space;t^{u},&space;v\right)=L_{\mathrm{cls}}(p,&space;u)&plus;\lambda[u&space;\geq&space;1]&space;L_{\mathrm{loc}}\left(t^{u},&space;v\right)&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;L\left(p,&space;u,&space;t^{u},&space;v\right)=L_{\mathrm{cls}}(p,&space;u)&plus;\lambda[u&space;\geq&space;1]&space;L_{\mathrm{loc}}\left(t^{u},&space;v\right)&space;$$" title="$$ L\left(p, u, t^{u}, v\right)=L_{\mathrm{cls}}(p, u)+\lambda[u \geq 1] L_{\mathrm{loc}}\left(t^{u}, v\right) $$"></a><br>其中分类任务还是我们常用的对数损失，<br>Fast-RCNN网络存在两个输出层，第一个输出层得到每个RoI属于K+1类(包括背景）的概率<a href="https://www.codecogs.com/eqnedit.php?latex=p=\left(p_{0},&space;p_{1},&space;p_{2},&space;\dots,&space;p_{K}\right)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p=\left(p_{0},&space;p_{1},&space;p_{2},&space;\dots,&space;p_{K}\right)" title="p=\left(p_{0}, p_{1}, p_{2}, \dots, p_{K}\right)"></a>,第二个输出得到bounding-box的offset <a href="https://www.codecogs.com/eqnedit.php?latex=t^{k}=\left(t_{X}^{k},&space;t_{y}^{k},&space;t_{W}^{k},&space;t_{l}^{k}\right)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?t^{k}=\left(t_{X}^{k},&space;t_{y}^{k},&space;t_{W}^{k},&space;t_{l}^{k}\right)" title="t^{k}=\left(t_{X}^{k}, t_{y}^{k}, t_{W}^{k}, t_{l}^{k}\right)"></a><br><a href="https://www.codecogs.com/eqnedit.php?latex=t^{u}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?t^{u}" title="t^{u}"></a>的定义方式与RCNN中一致，为中心区域坐标，以及区域宽度及高度。但是使用的损失函数不同，Fast RCNN使用的损失函数为鲁棒性的L1损失函数，而非RCNN中试用的L2损失函数，而且训练的过程也简单很多，需要注意的每个区域候选对于每个类都有区域回归训练。<br><a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;L_{\mathrm{loc}}\left(t^{u},&space;v\right)=\sum_{i&space;\in\{x,&space;y,&space;w,&space;h\}}&space;\operatorname{smooth}_{L_{1}}\left(t_{i}^{u}-v_{i}\right)&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;L_{\mathrm{loc}}\left(t^{u},&space;v\right)=\sum_{i&space;\in\{x,&space;y,&space;w,&space;h\}}&space;\operatorname{smooth}_{L_{1}}\left(t_{i}^{u}-v_{i}\right)&space;$$" title="$$ L_{\mathrm{loc}}\left(t^{u}, v\right)=\sum_{i \in\{x, y, w, h\}} \operatorname{smooth}_{L_{1}}\left(t_{i}^{u}-v_{i}\right) $$"></a><br>in which</p>
 <p><a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;\operatorname{smooth}_{L_{1}}(x)=\left\{\begin{array}{ll}{0.5&space;x^{2}}&space;&&space;{\text&space;{&space;if&space;}|x|<1}&space;\\&space;{|x|-0.5}&space;&&space;{\text&space;{&space;otherwise&space;}}\end{array}\right.&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;\operatorname{smooth}_{L_{1}}(x)=\left\{\begin{array}{ll}{0.5&space;x^{2}}&space;&&space;{\text&space;{&space;if&space;}|x|<1}&space;\\&space;{|x|-0.5}&space;&&space;{\text&space;{&space;otherwise&space;}}\end{array}\right.&space;$$" title="$$ \operatorname{smooth}_{L_{1}}(x)=\left\{\begin{array}{ll}{0.5 x^{2}} & {\text { if }|x|<1} \\ {|x|-0.5} & {\text { otherwise }}\end{array}\right. $$"></a><br>作者这样设置的目的是想让loss对于离群点更加鲁棒，控制梯度的量级使得训练时不容易跑飞。<br>一张解释很详细的图<br><img src="/assets/img/fastrcnn5.png" alt="avatar"></p>
-<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><h3 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h3><p>在pre-trained模型上做finetune<br>Mini-batch sampling抽样<br>    分级抽样法(Hierarchical sampling)<br>        batch尺寸(128)=每个batch的图片数量(2)*每个图片的ROI数量(64)<br>        充分利用卷积层的共享计算<br>    ROI分类给予与Ground truth的重叠<br>        物体占25%:IOU&gt;=0.5<br>        背景占75%:IOU在[0.1, 0.5)中<br>初始的模型使用VGG16</p>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><h3 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h3><p>1、在pre-trained模型上做finetune<br>2、Mini-batch sampling抽样<br>    a、分级抽样法(Hierarchical sampling)<br>        batch尺寸(128)=每个batch的图片数量(2)*每个图片的ROI数量(64)<br>        充分利用卷积层的共享计算<br>    b、ROI分类给予与Ground truth的重叠<br>        物体占25%:IOU&gt;=0.5<br>        背景占75%:IOU在[0.1, 0.5)中<br>3、初始的模型使用VGG16</p>
 <h3 id="ROI-Pooling的反向传播"><a href="#ROI-Pooling的反向传播" class="headerlink" title="ROI Pooling的反向传播"></a>ROI Pooling的反向传播</h3><p>不同于SPPNet，我们的ROI Pooling是可以反向传播的，让我们考虑下正常的Pooling层是如何反向传播的，以Max Pooling为例，根据链式法则，对于最大位置的神经元偏导数为1，对于其他神经元偏导数为0。ROI Pooling 不用于常规Pooling，因为很多的区域建议的感受野可能是相同的或者是重叠的，因此在一个Batch_Size内，我们需要对于这些重叠的神经元偏导数进行求和，然后反向传播回去就好啦。</p>
 <h3 id="多尺度训练"><a href="#多尺度训练" class="headerlink" title="多尺度训练"></a>多尺度训练</h3><p>这一点和SPPNet都是相同的，主要是对图片进行放缩，使得短边在一个区间内，然后对于每一个ROI，找到使其对应的原始图像面积接近224*224个像素的尺寸。</p>
 <h3 id="哪些层是需要学习的？"><a href="#哪些层是需要学习的？" class="headerlink" title="哪些层是需要学习的？"></a>哪些层是需要学习的？</h3><p>由于我们使用了更深的网络VGG16，因此作者觉得仅仅是微调最后的全连接层是不够的，因此尝试去微调其他的网络层，并进行了对比试验。发现，卷积层2_1之前一般是通用任务相关的，不需要再去学习了，而学习卷积层2_1之后的其他网络层显得至关重要，将识别准确率从61.4提高到了67.2。</p>
@@ -290,6 +290,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/08/23/Faster-RCNN/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Faster RCNN
+        
+      </div>
+    </a>
   
   
     <a href="/2019/08/21/SPP-net学习记录/" id="article-nav-older" class="article-nav-link-wrap">
